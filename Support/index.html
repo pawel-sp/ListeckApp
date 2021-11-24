@@ -1,0 +1,109 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'>
+    <style>
+        body {
+            color: #212830;
+            font-family: -apple-system, 'Helvetica Neue', 'Lucida Grande';
+            padding: 16px;
+        }
+        a {
+            color: #06B49D;
+        }
+        #languages {
+            text-align: right;
+        }
+        #container {
+            width: 75%;
+            margin:0 auto;
+        }
+        .button_lang {
+            background-color: #777;
+            color: #FFF;
+            padding: 8px 20px;
+            border-radius: 5px;
+        }
+        .button_lang:hover, .current_lang {
+            background-color: #06B49D; 
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="languages">
+        <ul>
+            <li id="en_click" style="display:inline" class="button_lang current_lang">EN</li>
+            <li id="pl_click" style="display:inline" class="button_lang">PL</li>
+        </ul>
+    </div>
+    <div id="en">
+        <center>
+            <img src="../Resources/Logo.png" />
+            <h1>Listeck Support</h1>
+            <p>Please contact us if you have any questions or issues regarding the app and its functionalities.</p>
+            <p>We will do our best to help you as quickly as it is possible. Feel free to share the feedback as well.</p>
+            <a href="mailto:listeckapp@gmail.com">listeckapp@gmail.com</a>
+        </center>
+        </br>
+    </div>
+    <div id="pl">
+        <center>
+            <img src="../Resources/Logo.png" />
+            <h1>Listeck Wsparcie</h1>
+            <p>Skontaktuj się z nami w przypadku jakichkolwiek pytań lub problemów z aplikacją i jej funkcjonalnościami.</p>
+            <p>Postaramy się pomóc tak szybko jak to możliwe. Jeśli chcesz się podzielić też swoją opinią nt aplikacji, napisz do nas.</p>
+            <a href="mailto:listeckapp@gmail.com">listeckapp@gmail.com</a>
+        </center>
+        </br>
+    </div>
+    <center>🌱</center>
+</div>
+</body>
+<script>
+    var polish = document.getElementById('pl_click'),
+    english = document.getElementById('en_click'),
+    pl_txt = document.querySelectorAll('#pl'),
+    en_txt = document.querySelectorAll('#en'),
+    nb_pl = pl_txt.length,
+    nb_en = en_txt.length;
+
+    polish.addEventListener('click', function() {
+        langue(polish,english);
+    }, false);
+
+    english.addEventListener('click', function() {
+        langue(english,polish);
+    }, false);
+
+    function langue(langueOn,langueOff){
+        if (!langueOn.classList.contains('current_lang')) {
+            langueOn.classList.toggle('current_lang');
+            langueOff.classList.toggle('current_lang');
+        }
+        if(langueOn.innerHTML == 'PL'){
+            afficher(pl_txt, nb_pl);
+            cacher(en_txt, nb_en);
+        }
+        else if(langueOn.innerHTML == 'EN'){
+            afficher(en_txt, nb_en);
+            cacher(pl_txt, nb_pl);
+        }
+    }
+
+    function afficher(txt,nb){
+        for(var i=0; i < nb; i++){
+            txt[i].style.display = 'block';
+        }
+    }
+    function cacher(txt,nb){
+        for(var i=0; i < nb; i++){
+            txt[i].style.display = 'none';
+        }
+    }
+    function init(){
+        langue(english, polish);
+    }
+    init();
+</script>
+</html>
